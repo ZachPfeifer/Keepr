@@ -58,10 +58,15 @@ namespace Keepr
       services.AddMvc();
       //TODO Register here
       services.AddScoped<IDbConnection>(x => CreateDBContext());
+      //Account
       services.AddTransient<AccountRepository>();
       services.AddTransient<AccountService>();
+      //Keeps
       services.AddTransient<KeepsService>();
       services.AddTransient<KeepsRepository>();
+      //Vaults
+      services.AddTransient<VaultsService>();
+      services.AddTransient<VaultsRepository>();
 
 
 
