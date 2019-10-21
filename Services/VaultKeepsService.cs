@@ -24,18 +24,22 @@ namespace Keepr.Services
     //   if (exists == null) { throw new Exception("Invalid ID"); }
     //   return exists;
     // }
-    public IEnumerable<Keep> GetVaultKeep(int vaultId, string userId)
+    public IEnumerable<Keep> GetVaultKeep(int id, string userId)
     {
-      return _repo.GetVaultKeep(vaultId, userId);
+      return _repo.GetVaultKeep(id, userId);
+
     }
 
-    public Vault Create(Vault newVaultKeep, string userId)
+    //Create VaultKeep
+    public VaultKeep Create(VaultKeep newVaultKeep, string userId)
     {
       newVaultKeep.UserId = userId;
       int id = _repo.Create(newVaultKeep);
       newVaultKeep.Id = id;
       return newVaultKeep;
     }
+
+
 
     // public Vault Edit(Vault newVaultEdit)
     // {
@@ -49,12 +53,20 @@ namespace Keepr.Services
     //   return vault;
     // }
 
-    public string RemoveKeepFromVault(int id)
-    {
-      VaultKeep vaultKeep = _repo.GetVaultKeep(id);
-      if (vaultKeep == null) { throw new Exception("Invalid Id Homie"); }
-      _repo.RemoveKeepFromVault(id);
-      return "Successfully Deleted";
-    }
+    // public string RemoveKeepFromVault(int id)
+    // {
+    //   VaultKeep vaultKeep = _repo.GetVaultKeep(id);
+    //   if (vaultKeep == null) { throw new Exception("Invalid Id Homie"); }
+    //   _repo.RemoveKeepFromVault(id);
+    //   return "Successfully Deleted";
+    // }
+
+    // public string RemoveKeepFromVault(Vault vk, string userId)
+    // {
+    //   Vault order = _repo.GetVaultKeep(vk);
+    //   if (vault == null || vault.UserId != userId) { throw new Exception("Invalid Info Homie"); }
+    //   _repo.RemoveKeepFromVault(vault.Id);
+    //   return "Successfully Booted";
+    // }
   }
 }

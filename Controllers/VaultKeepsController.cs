@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Keepr.Models;
 using Keepr.Services;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Keepr.Controllers
 {
@@ -18,12 +19,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{vaultId}")]
-    public ActionResult<IEnumerable<Keep>> GetVaultKeep(int vaultId)
+    public ActionResult<IEnumerable<VaultKeep>> GetVaultKeep(int id)
     {
       try
       {
         string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vks.GetVaultKeep(vaultId, userId));
+        return Ok(_vks.GetVaultKeep(id, userId));
       }
       catch (Exception e)
       {
@@ -32,11 +33,11 @@ namespace Keepr.Controllers
     }
 
     // [HttpGet("{id}")]
-    // public ActionResult<Vault> Get(int id)
+    // public ActionResult<Keep> GetVaultKeep(int id)
     // {
     //   try
     //   {
-    //     return Ok(_vks.Get(id));
+    //     return Ok(_vks.GetVaultKeep(id));
     //   }
     //   catch (Exception e)
     //   {
@@ -58,6 +59,7 @@ namespace Keepr.Controllers
     //   }
     // }
 
+    [Authorize]
     [HttpPost]
     public ActionResult<VaultKeep> Create([FromBody] VaultKeep newVaultKeep)
     {
@@ -87,18 +89,19 @@ namespace Keepr.Controllers
     //   }
     // }
 
-    [HttpDelete("{id}")]
-    public ActionResult<string> RemoveKeepFromVault(int id)
-    {
-      try
-      {
-        return Ok(_vks.RemoveKeepFromVault(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+    // [HttpDelete("{id}")]
+    // public ActionResult<string> RemoveKeepFromVault(int id)
+    // {
+    //   try
+    //   {
+    //     string userId = HttpContext.User.FindFirstValue("Id");
+    //     return Ok(_vks.RemoveKeepFromVault(id));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
   }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Keepr.Models;
 using Keepr.Services;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Keepr.Controllers
 {
@@ -30,6 +31,7 @@ namespace Keepr.Controllers
       }
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public ActionResult<Vault> Get(int id)
     {
@@ -57,6 +59,7 @@ namespace Keepr.Controllers
       }
     }
 
+    [Authorize]
     [HttpPost]
     public ActionResult<Vault> Create([FromBody] Vault newVault)
     {
@@ -71,7 +74,7 @@ namespace Keepr.Controllers
       }
     }
 
-
+    [Authorize]
     [HttpPut("{id}")]
     public ActionResult<Vault> Edit([FromBody] Vault newData, int id)
     {
@@ -85,7 +88,7 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-
+    [Authorize]
     [HttpDelete("{id}")]
     public ActionResult<string> Delete(int id)
     {

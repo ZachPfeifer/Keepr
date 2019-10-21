@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Keepr.Models;
 using Keepr.Services;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Keepr.Controllers
 {
@@ -81,7 +82,7 @@ namespace Keepr.Controllers
     //     return BadRequest(e.Message);
     //   }
     // }
-
+    [Authorize]
     [HttpPost]
     public ActionResult<Keep> Create([FromBody] Keep newKeep)
     {
@@ -96,7 +97,7 @@ namespace Keepr.Controllers
       }
     }
 
-
+    [Authorize]
     [HttpPut("{id}")]
     public ActionResult<Keep> Edit([FromBody] Keep newData, int id)
     {
@@ -119,7 +120,7 @@ namespace Keepr.Controllers
     //   _repo.Edit(order);
     //   return order;
     // }
-
+    [Authorize]
     [HttpDelete("{id}")]
     public ActionResult<string> Delete(int id)
     {
