@@ -16,18 +16,30 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    keeps: [],
+    vault: [],
+    vaultKeep: []
   },
   mutations: {
+    //Account
     setUser(state, user) {
       state.user = user
     },
     resetState(state) {
       //clear the entire state object of user data
       state.user = {}
+    },
+
+    //Keeps
+    setKeeps(state, payload) {
+      state.keeps = payload
     }
+
   },
   actions: {
+
+    //#region -- ACCOUNT --
     async register({ commit, dispatch }, creds) {
       try {
         let user = await AuthService.Register(creds)
@@ -55,6 +67,40 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn(e.message)
       }
-    }
+    },
+    //#endregion
+
+    //#region -- KEEPS --
+    async getKeeps({ commit, dispatch }) {
+      try {
+        let res = await api.get('keeps')
+        commit('setKeeps', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getKeepById({ commit, dispatch }, payload) {
+      try {
+        let res = await api.get(`/keeps/${payload}`)
+        commit('setActiveKeep', res.data)
+        router.push({ name: "keep" })
+
+      } catch (error) {
+        console.error(error)
+
+      }
+    },
+    async addKeep({ dispatch }, payload) {
+      try {
+        let res = await api.post('/keeps/', payload)
+        dispatch('getKeeps')
+
+      } catch (error) {
+        console.error(error)
+
+      }
+    },
+
+    //#endregion
   }
 })

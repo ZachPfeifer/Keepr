@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // @ts-ignore
-import Home from './views/Home.vue'
+import Keeps from './views/Keeps.vue'
 // @ts-ignore
 import Login from './views/Login.vue'
 
@@ -11,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'keeps',
+      component: Keeps
     },
     {
       path: '/login',
