@@ -1,15 +1,15 @@
 <template>
-  <div id="create-keep-modal" class="modal" tabindex="-1" role="dialog">
+  <div id="create-vault-modal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Create A Keep!</h5>
+          <h5 class="modal-title">Create A Vault!</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addKeep()">
+          <form @submit.prevent="addVault()">
             <div class="form-group">
               <label for="name">Name</label>
               <input
@@ -17,19 +17,9 @@
                 class="form-control"
                 id="name"
                 placeholder="Enter name"
-                v-model="newKeep.name"
+                v-model="newVault.name"
                 required
               />
-              <div class="form-group">
-                <label for="img">Image Url</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="img"
-                  placeholder="Enter imgurl"
-                  v-model="newKeep.img"
-                />
-              </div>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
@@ -38,22 +28,10 @@
                 class="form-control"
                 id="description"
                 placeholder="Enter description"
-                v-model="newKeep.description"
+                v-model="newVault.description"
               />
             </div>
-            <div class="form-group">
-              <span>
-                <label for="isPrivate">Show:</label>
-                <input
-                  type="checkbox"
-                  value="isPrivate"
-                  class="form-control"
-                  id="isPrivate"
-                  v-model="newKeep.isPrivate"
-                /> Private
-              </span>
-            </div>
-            <button type="submit" class="btn btn-primary">Add Keep</button>
+            <button type="submit" class="btn btn-primary">Add Vault</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -67,17 +45,16 @@
 
 <script>
 export default {
-  name: "create-keep-modal",
+  name: "create-vault-modal",
   data() {
     return {
-      newKeep: {}
+      newVault: {}
     };
   },
   computed: {},
   methods: {
-    addKeep() {
-      this.$store.dispatch("addKeep", this.newKeep);
-      // this.newKeep = {};
+    addVault() {
+      this.$store.dispatch("addVault", this.newVault);
       $("#close").click();
     }
   },

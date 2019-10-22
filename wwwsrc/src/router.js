@@ -1,9 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // @ts-ignore
+import Login from './views/Login.vue'
+// @ts-ignore
 import Keeps from './views/Keeps.vue'
 // @ts-ignore
-import Login from './views/Login.vue'
+import Vaults from './views/Vaults.vue'
+
+// @ts-ignore
+import Keep from './views/Keep.vue'
+// @ts-ignore
+import ViewKeep from './components/KeepModal.vue'
+
 
 Vue.use(Router)
 
@@ -14,10 +22,42 @@ export default new Router({
       name: 'keeps',
       component: Keeps
     },
+    // {
+    //   path: '/keeps',
+    //   name: 'keeps',
+    //   component: Keep
+    // },
+    {
+      path: '/keeps/:keepId',
+      name: 'keep',
+      // component: Keep
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: function () {
+        return import(/* webpackChunkName: "keep" */ './views/Keep.vue')
+      }
+    },
+
+    // Vaults
+    {
+      path: '/vaults',
+      name: 'vaults',
+      component: Vaults
+    },
+    {
+      path: '/vaults/:vaultId',
+      name: 'vault',
+      component: function () {
+        return import(/* webpackChunkName: "vault" */ './views/Vault.vue')
+      }
+    },
+
+    //LOGIN
     {
       path: '/login',
       name: 'login',
       component: Login
-    }
+    },
   ]
 })

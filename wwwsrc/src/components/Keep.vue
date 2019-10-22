@@ -5,10 +5,10 @@
       <div class="card-body">
         <p class="card-text">
           Name: {{keepProp.name}}
-          Description: {{keepProp.desription}}
-          {{keepProp.views}}
-          {{keepProp.shares}}
-          {{keepProp.keeps}}
+          Description: {{keepProp.description}}
+          Views: {{keepProp.views}}
+          <!-- Shares: {{keepProp.shares}} -->
+          Keeps: {{keepProp.keeps}}
         </p>
       </div>
     </div>
@@ -28,12 +28,12 @@ export default {
     viewKeep() {
       this.$store.dispatch("getKeepById", this.keepProp.id);
       // //NOTE better way to navigate programatically
-      // this.$router.push({
-      //   name: "keep",
-      //   params: { keepId: this.keepProp.id }
-      // });
+      this.$router.push({
+        name: "keep",
+        params: { keepId: this.keepProp.id }
+      });
       // //NOTE The OTHER way...
-      //   this.$router.push("/keeps/" + this.keepProp._id);
+      this.$router.push("/keeps/" + this.keepProp.id);
     }
   },
   components: {}

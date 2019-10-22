@@ -36,11 +36,13 @@ namespace Keepr.Repositories
     {
       string sql = @"
             INSERT INTO keeps
-            (name, description, img, isPrivate, views, shares, keeps, userId)
+            (name, description, img, isPrivate, userId)
             VALUES
-            (@Name, @Description, @Img, @isPrivate, @Views, @Shares, @Keeps, @UserId);
+            (@Name, @Description, @Img, @isPrivate, @UserId);
             SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, newKeep);
+      //views, shares, keeps,
+      // @Views, @Shares, @Keeps,
     }
 
     public void Edit(Keep keep)
