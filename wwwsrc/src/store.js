@@ -18,9 +18,9 @@ export default new Vuex.Store({
   state: {
     user: {},
     keeps: [],
-    activeKeep: [],
+    activeKeep: {},
     vaults: [],
-    activeVault: [],
+    activeVault: {},
     vaultKeep: []
   },
   mutations: {
@@ -98,7 +98,6 @@ export default new Vuex.Store({
       try {
         let res = await api.get(`/keeps/${payload}`)
         commit('setActiveKeep', res.data)
-        debugger
         router.push({ name: "keep" })
       } catch (error) {
         console.error(error)

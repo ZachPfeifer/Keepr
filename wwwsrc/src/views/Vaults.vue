@@ -40,10 +40,13 @@ export default {
     }
   },
   methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
     addVault() {
       this.$store.dispatch("addVault");
     }
   },
-  components: { Vault, AddVaultModal }
+  components: { Vault, AddVaultModal } //, ViewVaultModal }
 };
 </script>

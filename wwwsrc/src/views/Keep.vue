@@ -1,5 +1,5 @@
 <template>
-  <div class="keep">
+  <div class="view-keep">
     <div class="card">
       <h1 class="card-title">{{keep.name}}</h1>
       <div class="card-body">
@@ -10,7 +10,9 @@
         <h5>Views: {{keep.views}}{{keep.year}}</h5>
         <!-- <h5>Shares: {{keep.shares}}</h5> -->
         <h5>Keeps: {{keep.keeps}}</h5>
-        <button class="btn btn-danger" @click="Delete">Delete Keep</button>
+        <div v-if="user.id">
+          <button class="btn btn-danger" @click="Delete">Delete Keep</button>
+        </div>
       </div>
     </div>
   </div>
@@ -19,7 +21,7 @@
 
 <script>
 export default {
-  name: "keep",
+  name: "view-keep",
   data() {
     return {};
   },
@@ -30,6 +32,9 @@ export default {
     this.$store.dispatch("getKeepById", payload);
   },
   computed: {
+    user() {
+      return this.$store.state.user;
+    },
     keep() {
       return this.$store.state.activeKeep;
     }

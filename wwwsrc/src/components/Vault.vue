@@ -1,12 +1,11 @@
 <template>
-  <div class="vault col-3 border rounded" @click="viewVault()" v-if="vaultProp.isPrivate == false">
+  <div class="vault col-3 border rounded" @click="viewVault()">
     <div class="card" style="width: 18rem;">
-      <img :src="vaultProp.img" class="card-img-top" alt="Post" />
+      <div class="card-header">
+        <h1>Name: {{vaultProp.name}}</h1>
+      </div>
       <div class="card-body">
-        <p class="card-text">
-          Name: {{vaultProp.name}}
-          Description: {{vaultProp.description}}
-        </p>
+        <p class="card-text">Description: {{vaultProp.description}}</p>
       </div>
     </div>
   </div>
@@ -30,7 +29,7 @@ export default {
         params: { vaultId: this.vaultProp.id }
       });
       // //NOTE The OTHER way...
-      this.$router.push("/vaults/" + this.vaultProp.id);
+      // this.$router.push("/vaults/" + this.vaultProp.id);
     }
   },
   components: {}

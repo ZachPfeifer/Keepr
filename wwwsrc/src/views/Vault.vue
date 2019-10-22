@@ -6,7 +6,9 @@
         <h5>{{vault.description}}</h5>
       </div>
       <div class="card-footer">
-        <button class="btn btn-danger" @click="Delete">Delete Vault</button>
+        <div v-if="user.id">
+          <button class="btn btn-danger" @click="Delete">Delete Vault</button>
+        </div>
       </div>
     </div>
   </div>
@@ -26,6 +28,9 @@ export default {
     this.$store.dispatch("getVaultById", payload);
   },
   computed: {
+    user() {
+      return this.$store.state.user;
+    },
     vault() {
       return this.$store.state.activeVault;
     }

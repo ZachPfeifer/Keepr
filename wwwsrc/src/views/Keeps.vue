@@ -1,8 +1,5 @@
 <template>
   <div class="keeps container-fluid">
-    <h1>Welcome Home {{user.username}}</h1>
-    <button v-if="user.id" @click="logout">logout</button>
-    <router-link v-else :to="{name: 'login'}">Login</router-link>
     <!-- Add Keep Modal -->
     <AddKeepModal />
     <button
