@@ -74,8 +74,9 @@ export default {
     },
     AddToVault() {
       this.$store.dispatch("addKeeptoVault", {
-        this.keep.id,
-         this.vault.id});
+        keepId: this.keep.id,
+        vaultId: this.vault.id
+      });
     }
   },
   components: {}

@@ -23,27 +23,42 @@
 
           <!--FIXME TEST DROPDOWN -->
           <div class="dropdown">
-            <a
+            <li
               class="btn btn-secondary dropdown-toggle"
               role="button"
               id="dropdownMenuLink"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Save Keep</a>
+            >Save Keep</li>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Select Vault</a>
+              <a class="dropdown-item" disabled>Select Vault</a>
               <a
                 class="dropdown-item"
                 v-for="vault in vaults"
                 :key="vault.id"
                 :value="vault.id"
-                @click="AddToVault()"
+                @click="addKeeptoVault()"
               >{{vault.name}}</a>
               <!-- <a class="dropdown-item" href="#">{{vault.name}}</a> -->
             </div>
           </div>
+
+          <!--FIXME Take 2 -->
+          <!-- <div v-if="user.id"> -->
+          <select>
+            <option disabled selected>Select Vault</option>
+            <option
+              v-for="vault in vaults"
+              :key="vault.id"
+              :value="vault.id"
+              @click="addKeeptoVault()"
+            >{{vault.name}}</option>
+            <!-- <option v-for="vault in vaults" :key="vault.id" @click="addKeeptoVault()">{{vault.name}}</option> -->
+          </select>
+          <!-- </div> -->
+          <!-- end -->
         </div>
       </div>
     </div>
@@ -58,9 +73,15 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    this.$store.state.vaults;
+  },
   computed: {
-    vault() {
+    activeVault() {
       return this.$store.state.activeVault;
+    },
+    vaults() {
+      return this.$store.state.vaults;
     }
   },
   methods: {
