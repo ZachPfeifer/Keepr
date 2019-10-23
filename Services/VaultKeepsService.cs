@@ -24,9 +24,9 @@ namespace Keepr.Services
     //   if (exists == null) { throw new Exception("Invalid ID"); }
     //   return exists;
     // }
-    public IEnumerable<Keep> GetVaultKeep(int id, string userId)
+    public IEnumerable<Keep> GetVaultKeep(int vaultId, string userId)
     {
-      return _repo.GetVaultKeep(id, userId);
+      return _repo.GetVaultKeep(vaultId, userId);
 
     }
 
@@ -53,12 +53,12 @@ namespace Keepr.Services
     //   return vault;
     // }
 
-    // public string RemoveKeepFromVault(int id)
+    // public string RemoveKeepFromVault(int vaultId, string userId)
     // {
-    //   VaultKeep vaultKeep = _repo.GetVaultKeep(id);
-    //   if (vaultKeep == null) { throw new Exception("Invalid Id Homie"); }
-    //   _repo.RemoveKeepFromVault(id);
-    //   return "Successfully Deleted";
+    // VaultKeep vaultKeep = _repo.GetVaultKeep(vaultId, userId);
+    // if (vaultKeep == null) { throw new Exception("Invalid Id Homie"); }
+    // _repo.RemoveKeepFromVault(vaultId);
+    // return "Successfully Deleted";
     // }
 
     // public string RemoveKeepFromVault(Vault vk, string userId)

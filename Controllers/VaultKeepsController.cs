@@ -19,12 +19,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{vaultId}")]
-    public ActionResult<IEnumerable<VaultKeep>> GetVaultKeep(int id)
+    public ActionResult<IEnumerable<Keep>> GetVaultKeep(int vaultId)
     {
       try
       {
         string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vks.GetVaultKeep(id, userId));
+        return Ok(_vks.GetVaultKeep(vaultId, userId));
       }
       catch (Exception e)
       {
@@ -90,12 +90,12 @@ namespace Keepr.Controllers
     // }
 
     // [HttpDelete("{id}")]
-    // public ActionResult<string> RemoveKeepFromVault(int id)
+    // public ActionResult<string> RemoveKeepFromVault(int vaultId)
     // {
     //   try
     //   {
     //     string userId = HttpContext.User.FindFirstValue("Id");
-    //     return Ok(_vks.RemoveKeepFromVault(id));
+    //     return Ok(_vks.RemoveKeepFromVault(vaultId, userId));
     //   }
     //   catch (Exception e)
     //   {

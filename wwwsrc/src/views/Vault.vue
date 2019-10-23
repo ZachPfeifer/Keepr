@@ -1,10 +1,15 @@
 <template>
   <div class="vault">
     <div class="card">
-      <h1 class="card-title">{{vault.name}}</h1>
-      <div class="card-body">
+      <div class="card-title">
+        <p>{{vault.id}}</p>
+        <h1>{{vault.name}}</h1>
         <h5>{{vault.description}}</h5>
       </div>
+      <div class="card-body">
+        <VaultKeep class="col" v-for="keep in vaultKeep" :keepProp="keep" :key="keep.id" />
+      </div>
+
       <div class="card-footer">
         <div v-if="user.id">
           <button class="btn btn-danger" @click="Delete">Delete Vault</button>
@@ -16,6 +21,8 @@
 
 
 <script>
+import VaultKeep from "../components/VaultKeep.vue";
+
 export default {
   name: "vault",
   data() {
@@ -26,6 +33,8 @@ export default {
       vaultId: this.$route.params.vaultId
     };
     this.$store.dispatch("getVaultById", payload);
+
+    this.$store.dispatch("getVaultKeepByVaultId", this.$route.params.vaultId);
   },
   computed: {
     user() {
@@ -33,6 +42,9 @@ export default {
     },
     vault() {
       return this.$store.state.activeVault;
+    },
+    vaultKeep() {
+      return this.$store.state.vaultKeeps;
     }
   },
   methods: {
@@ -40,7 +52,7 @@ export default {
       this.$store.dispatch("deleteVault", this.vault.id);
     }
   },
-  components: {}
+  components: { VaultKeep }
 };
 </script>
 

@@ -2,7 +2,7 @@
   <div class="vault col-3 border rounded" @click="viewVault()">
     <div class="card" style="width: 18rem;">
       <div class="card-header">
-        <h1>Name: {{vaultProp.name}}</h1>
+        <h1>{{vaultProp.name}}</h1>
       </div>
       <div class="card-body">
         <p class="card-text">Description: {{vaultProp.description}}</p>

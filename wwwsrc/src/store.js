@@ -21,7 +21,8 @@ export default new Vuex.Store({
     activeKeep: {},
     vaults: [],
     activeVault: {},
-    vaultKeep: []
+    vaultKeeps: []
+    // activeVaultKeep: []
   },
   mutations: {
 
@@ -48,7 +49,15 @@ export default new Vuex.Store({
     },
     setActiveVault(state, payload) {
       state.activeVault = payload
+    },
+
+    //Vault Keeps
+    setVaultKeeps(state, payload) {
+      state.vaultKeeps = payload
     }
+    // setActiveVault(state, payload) {
+    //   state.activeVaultKeep = payload
+    // }
 
 
   },
@@ -140,7 +149,6 @@ export default new Vuex.Store({
       try {
         let res = await api.get(`/vaults/${payload}`)
         commit('setActiveVault', res.data)
-        debugger
         router.push({ name: "vault" })
       } catch (error) {
         console.error(error)
@@ -165,8 +173,48 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }
+    },
 
     //#endregion
+
+
+    //#region -- VAULT KEEPS --
+    // async getVaultKeeps({ commit, dispatch, }) {
+    //   try {
+    //     let res = await api.get('vaultkeeps' )
+    //     commit('setVaultKeeps', res.data)
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // },
+    async getVaultKeepByVaultId({ commit, dispatch }, payload) {
+      try {
+        let res = await api.get(`/vaultkeeps/${payload}`)
+        commit('setVaultKeeps', res.data)
+        // router.push({ name: "vaultkeep" })
+      } catch (error) {
+        console.error(error)
+
+      }
+    },
+    async addKeeptoVault({ dispatch }, payload) {
+      try {
+        let res = await api.post('vaultkeeps', payload)
+        // dispatch('getVaultKeeps')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async deleteKeepFromVault({ dispatch }, payload) {
+      try {
+        let res = await api.delete('/vaultkeeps/' + payload)
+        dispatch('getVaultKeeps', payload.vaultId)
+        // router.push({ name: 'vaultkeeps' })
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
+  //#endregion
 })
