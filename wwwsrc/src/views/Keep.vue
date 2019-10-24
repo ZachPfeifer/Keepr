@@ -12,32 +12,26 @@
         <h5>Keeps: {{keep.keeps}}</h5>
         <div v-if="user.id">
           <button class="btn btn-danger" @click="Delete">Delete Keep</button>
-          <!-- <button class="btn btn-danger" @click="AddToVault">Save Keep</button> -->
+          <!-- DROPDOWN -->
+          <li
+            class="btn btn-secondary dropdown-toggle"
+            role="button"
+            id="dropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Save Keep</li>
 
-          <!-- TEST DROPDOWN
-          <div class="dropdown">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" disabled>Select Vault</a>
             <a
-              class="btn btn-secondary dropdown-toggle"
-              role="button"
-              id="dropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Save Keep</a>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" v-model="selectedVault">
-              <a class="dropdown-item">Select Vault</a>
-              <a
-                class="dropdown-item"
-                v-for="vault in vaults"
-                :key="vault.id"
-                :value="vault.id"
-                @click="AddToVault()"
-              >{{vault.name}}</a>
-              <a class="dropdown-item" href="#">{{vault.name}}</a>
-            </div>
+              class="dropdown-item"
+              v-for="vault in vaults"
+              :key="vault.id"
+              :value="vault.id"
+              @click="addKeeptoVault(vault.id)"
+            >{{vault.name}}</a>
           </div>
-          END OF TEST-->
         </div>
       </div>
     </div>
@@ -52,10 +46,10 @@ export default {
     return {};
   },
   mounted() {
-    let payload = {
-      keepId: this.$route.params.keepId
-    };
-    this.$store.dispatch("getKeepById", payload);
+    this.$store.dispatch("getKeepById", this.$route.params.keepId);
+    this.$store.state.activeKeep;
+    this.$store.dispatch("getVaults");
+    this.$store.state.vaults;
   },
   computed: {
     user() {
@@ -64,18 +58,20 @@ export default {
     keep() {
       return this.$store.state.activeKeep;
     },
-    vault() {
-      return this.$store.state.vault;
+    vaults() {
+      return this.$store.state.vaults;
     }
   },
   methods: {
     Delete() {
       this.$store.dispatch("deleteKeep", this.keep.id);
     },
-    AddToVault() {
+    addKeeptoVault(payload) {
+      debugger;
       this.$store.dispatch("addKeeptoVault", {
-        keepId: this.keep.id,
-        vaultId: this.vault.id
+        userId: this.user.id,
+        vaultId: payload,
+        keepId: this.keep.id
       });
     }
   },

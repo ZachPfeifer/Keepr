@@ -32,10 +32,10 @@ export default {
     return {};
   },
   mounted() {
-    let payload = {
-      keepId: this.$route.params.keepId
-    };
-    this.$store.dispatch("getKeepById", payload);
+    // let payload = {
+    //   keepId: this.$route.params.keepId
+    // };
+    this.$store.dispatch("getKeepById", this.$route.params.keepId);
   },
   computed: {
     keep() {

@@ -17,7 +17,7 @@ namespace Keepr.Controllers
     {
       _vks = vks;
     }
-
+    [Authorize]
     [HttpGet("{vaultId}")]
     public ActionResult<IEnumerable<Keep>> GetVaultKeep(int vaultId)
     {
@@ -75,11 +75,13 @@ namespace Keepr.Controllers
     }
 
 
+    // [Authorize]
     // [HttpPut("{id}")]
     // public ActionResult<Vault> Edit([FromBody] Vault newData, int id)
     // {
     //   try
     //   {
+    //     string userId = HttpContext.User.FindFirstValue("Id");
     //     newData.Id = id;
     //     return Ok(_vks.Edit(newData));
     //   }

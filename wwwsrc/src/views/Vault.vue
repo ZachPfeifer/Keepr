@@ -6,7 +6,7 @@
         <h1>{{vault.name}}</h1>
         <h5>{{vault.description}}</h5>
       </div>
-      <div class="card-body">
+      <div class="card-body row">
         <VaultKeep class="col" v-for="keep in vaultKeep" :keepProp="keep" :key="keep.id" />
       </div>
 
@@ -29,12 +29,11 @@ export default {
     return {};
   },
   mounted() {
-    let payload = {
-      vaultId: this.$route.params.vaultId
-    };
-    this.$store.dispatch("getVaultById", payload);
+    this.$store.dispatch("getVaultById", this.$route.params.vaultId);
 
     this.$store.dispatch("getVaultKeepByVaultId", this.$route.params.vaultId);
+
+    this.$store.state.vaults;
   },
   computed: {
     user() {

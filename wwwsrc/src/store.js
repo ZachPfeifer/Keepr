@@ -199,6 +199,7 @@ export default new Vuex.Store({
     },
     async addKeeptoVault({ dispatch }, payload) {
       try {
+        debugger
         let res = await api.post('vaultkeeps', payload)
         // dispatch('getVaultKeeps')
       } catch (error) {

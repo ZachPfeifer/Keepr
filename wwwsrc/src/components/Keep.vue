@@ -19,34 +19,32 @@
         <div class="card-footer">
           <span>
             <button class="btn btn-dark" @click="viewKeep()">View</button>
-          </span>
 
-          <!--FIXME TEST DROPDOWN -->
-          <div class="dropdown">
-            <li
-              class="btn btn-secondary dropdown-toggle"
-              role="button"
-              id="dropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Save Keep</li>
+            <!--FIXME TEST DROPDOWN -->
+            <div class="dropdown" v-if="user.id">
+              <li
+                class="btn btn-secondary dropdown-toggle"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >Save Keep</li>
 
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" disabled>Select Vault</a>
-              <a
-                class="dropdown-item"
-                v-for="vault in vaults"
-                :key="vault.id"
-                :value="vault.id"
-                @click="addKeeptoVault()"
-              >{{vault.name}}</a>
-              <!-- <a class="dropdown-item" href="#">{{vault.name}}</a> -->
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" disabled>Select Vault</a>
+                <a
+                  class="dropdown-item"
+                  v-for="vault in vaults"
+                  :key="vault.id"
+                  :value="vault.id"
+                  @click="addKeeptoVault(vault.id)"
+                >{{vault.name}}</a>
+              </div>
             </div>
-          </div>
 
-          <!--FIXME Take 2 -->
-          <!-- <div v-if="user.id"> -->
+            <!--FIXME Take 2 -->
+            <!-- <div v-if="user.id">
           <select>
             <option disabled selected>Select Vault</option>
             <option
@@ -55,10 +53,10 @@
               :value="vault.id"
               @click="addKeeptoVault()"
             >{{vault.name}}</option>
-            <!-- <option v-for="vault in vaults" :key="vault.id" @click="addKeeptoVault()">{{vault.name}}</option> -->
           </select>
-          <!-- </div> -->
-          <!-- end -->
+            </div>-->
+            <!-- end -->
+          </span>
         </div>
       </div>
     </div>
@@ -75,8 +73,12 @@ export default {
   },
   mounted() {
     this.$store.state.vaults;
+    this.$store.dispatch("getVaults");
   },
   computed: {
+    user() {
+      return this.$store.state.user;
+    },
     activeVault() {
       return this.$store.state.activeVault;
     },
@@ -95,9 +97,11 @@ export default {
       // //NOTE The OTHER way...
       // this.$router.push("/keeps/" + this.keepProp.id);
     },
-    addKeeptoVault() {
+    addKeeptoVault(payload) {
+      debugger;
       this.$store.dispatch("addKeeptoVault", {
-        vaultId: this.selectedVault,
+        userId: this.user.id,
+        vaultId: payload,
         keepId: this.keepProp.id
       });
     }

@@ -29,6 +29,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getVaults");
+    this.$store.state.vaults;
   },
   computed: {
     user() {
