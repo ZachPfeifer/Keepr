@@ -62,7 +62,7 @@ namespace Keepr.Services
     public string RemoveKeep(VaultKeep vk)
     {
       VaultKeep vault = _repo.GetIds(vk.VaultId, vk.KeepId);
-      // if (vault == null || vault.UserId != vk.UserId) { throw new Exception("Invalid Info Homie"); } //FIXME ????
+      if (vault == null || vault.UserId != vk.UserId) { throw new Exception("Invalid Info Homie"); } //FIXME ????
       _repo.RemoveKeepFromKeeps(vault.Id);
       return "Successfully Booted";
     }

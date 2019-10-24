@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // @ts-ignore
 import Login from './views/Login.vue'
 // @ts-ignore
-import Keeps from './views/Keeps.vue'
+import Dashboard from './views/Dashboard.vue'
 // @ts-ignore
 import Vaults from './views/Vaults.vue'
 // @ts-ignore
@@ -23,8 +23,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'keeps',
-      component: Keeps
+      name: 'dashboard',
+      component: Dashboard
     },
     // {
     //   path: '/keeps',
@@ -40,7 +40,7 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: function () {
         // @ts-ignore
-        return import(/* webpackChunkName: "keep" */ './views/Keep.vue')
+        return import(/* webpackChunkName: "dashboard" */ './views/Keep.vue')
       }
     },
 

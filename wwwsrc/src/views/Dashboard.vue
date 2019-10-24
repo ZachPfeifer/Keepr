@@ -1,5 +1,5 @@
 <template>
-  <div class="keeps container-fluid">
+  <div class="dashboard container-fluid">
     <!-- Add Keep Modal -->
     <AddKeepModal />
     <button
@@ -23,7 +23,7 @@ import AddKeepModal from "../components/AddKeepModal.vue";
 // import ViewKeepModal from "../components/KeepModal.vue";
 
 export default {
-  name: "keeps",
+  name: "dashboard",
   data() {
     return {};
   },

@@ -199,18 +199,18 @@ export default new Vuex.Store({
     },
     async addKeeptoVault({ dispatch }, payload) {
       try {
-        debugger
         let res = await api.post('vaultkeeps', payload)
-        // dispatch('getVaultKeeps')
+        // dispatch('getVaultKeeps', res.data.vaultId)
       } catch (error) {
         console.error(error)
       }
     },
 
     async deleteKeepFromVault({ dispatch }, payload) {
+      // debugger
       try {
-        let res = await api.delete('/vaultkeeps/' + payload)
-        dispatch('getVaultKeeps', payload.vaultId)
+        let res = await api.put('/vaultkeeps/', payload)
+        dispatch('getVaultKeepByVaultId', payload.vaultId)
         // router.push({ name: 'vaultkeeps' })
       } catch (error) {
         console.error(error)

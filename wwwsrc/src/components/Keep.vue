@@ -88,6 +88,7 @@ export default {
   },
   methods: {
     viewKeep() {
+      debugger;
       this.$store.dispatch("getKeepById", this.keepProp.id);
       // //NOTE better way to navigate programatically
       this.$router.push({
