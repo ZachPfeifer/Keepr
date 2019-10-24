@@ -8,7 +8,7 @@
       </div>
       <div class="card-footer">
         <h5>Views: {{keep.views}}{{keep.year}}</h5>
-        <!-- <h5>Shares: {{keep.shares}}</h5> -->
+        <h5>Shares: {{keep.shares}}</h5>
         <h5>Keeps: {{keep.keeps}}</h5>
         <div v-if="user.id">
           <button class="btn btn-danger" @click="Delete">Delete Keep</button>

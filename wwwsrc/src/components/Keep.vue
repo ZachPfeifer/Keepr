@@ -13,7 +13,7 @@
           </h5>
           <hr />
           Views: {{keepProp.views}}
-          <!-- Shares: {{keepProp.shares}} -->
+          Shares: {{keepProp.shares}}
           Keeps: {{keepProp.keeps}}
         </div>
         <div class="card-footer">
