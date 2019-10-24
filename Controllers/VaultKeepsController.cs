@@ -77,13 +77,13 @@ namespace Keepr.Controllers
 
     // [Authorize]
     // [HttpPut("{id}")]
-    // public ActionResult<Vault> Edit([FromBody] Vault newData, int id)
+    // public ActionResult<VaultKeep> Delete([FromBody] Vault newData, int id)
     // {
     //   try
     //   {
     //     string userId = HttpContext.User.FindFirstValue("Id");
     //     newData.Id = id;
-    //     return Ok(_vks.Edit(newData));
+    //     return Ok(_vks.Delete(newData, id));
     //   }
     //   catch (Exception e)
     //   {
@@ -91,7 +91,7 @@ namespace Keepr.Controllers
     //   }
     // }
 
-    // [HttpDelete("{id}")]
+    // [HttpPut("{id}")]
     // public ActionResult<string> RemoveKeepFromVault(int vaultId)
     // {
     //   try
@@ -104,6 +104,20 @@ namespace Keepr.Controllers
     //     return BadRequest(e.Message);
     //   }
     // }
-
+    [Authorize]
+    [HttpPut]
+    public ActionResult<string> RemoveKeepFromVault([FromBody] VaultKeep vk)
+    {
+      try
+      {
+        // vk.VaultId = id;
+        // string userId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_vks.RemoveKeep(vk));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
