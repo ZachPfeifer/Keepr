@@ -17,7 +17,7 @@ namespace Keepr.Controllers
     {
       _vs = vs;
     }
-
+    [Authorize]
     [HttpGet]
     public ActionResult<IEnumerable<Vault>> Get()
     {
@@ -44,6 +44,8 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [Authorize]
 
     [HttpGet("user")]
     public ActionResult<IEnumerable<Vault>> GetUserVaults()
