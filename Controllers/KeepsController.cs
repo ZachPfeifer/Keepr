@@ -112,6 +112,20 @@ namespace Keepr.Controllers
       }
     }
 
+    [HttpPut("{id}")]//FIXME
+    public ActionResult<Keep> UpdateView([FromBody] Keep viewCount, int id)
+    {
+      try
+      {
+        viewCount.Id = id;
+        return Ok(_ks.ViewCount(viewCount));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     // public Order Edit(Order newData)
     // {
     //   Order order = _repo.Get(newData.Id);

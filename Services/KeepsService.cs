@@ -61,5 +61,14 @@ namespace Keepr.Services
       _repo.Delete(id);
       return "Successfully Deleted";
     }
+
+    public Keep ViewCount(Keep count) //FIXME 
+    {
+      Keep keep = _repo.Get(count.Id);
+      keep.Views = count.Views + 1;
+
+      _repo.ViewCount(keep);
+      return keep;
+    }
   }
 }

@@ -55,12 +55,13 @@ namespace Keepr.Repositories
                 img = @Img,
                 isPrivate = @isPrivate,
               
+                views = @Views,
+                shares = @Shares,
+                keeps = @Keeps,
+
                 userId = @UserId
 
             WHERE id = @Id";
-      //           views = @Views,
-      //           shares = @Shares,
-      //           keeps = @Keeps,
 
       _db.Execute(sql, keep);
 
@@ -81,5 +82,14 @@ namespace Keepr.Repositories
     //         ";
     //   return _db.Query<Keep>(sql, new { keepId });
     // }
+
+    public void ViewCount(Keep keep) //FIXME
+    {
+      string sql = @"
+      INSERT INTO keeps VALUES (1,0);
+        UPDATE keep SET views = views+1 WHERE id = @id";
+      _db.Execute(sql, keep);
+
+    }
   }
 }
