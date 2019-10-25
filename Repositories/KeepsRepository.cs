@@ -50,17 +50,11 @@ namespace Keepr.Repositories
       string sql = @"
             UPDATE keeps
             SET
-                name = @Name,
-                description = @Description,
-                img = @Img,
+
                 isPrivate = @isPrivate,
-              
                 views = @Views,
                 shares = @Shares,
-                keeps = @Keeps,
-
-                userId = @UserId
-
+                keeps = @Keeps
             WHERE id = @Id";
 
       _db.Execute(sql, keep);
@@ -83,13 +77,16 @@ namespace Keepr.Repositories
     //   return _db.Query<Keep>(sql, new { keepId });
     // }
 
-    public void ViewCount(Keep keep) //FIXME
-    {
-      string sql = @"
-      INSERT INTO keeps VALUES (1,0);
-        UPDATE keep SET views = views+1 WHERE id = @id";
-      _db.Execute(sql, keep);
+    // public void Counts(Keep count) //FIXME
+    // {
+    //   string sql = @"
+    //   INSERT INTO keeps
+    //    VALUES (1,0);
+    //     UPDATE keeps SET views = views+1 WHERE id = 1";
+    //   //UPDATE keeps SET views = views+1 WHERE id = 'SOME NUMBER'
 
-    }
+    //   _db.Execute(sql, count);
+
+    // }
   }
 }

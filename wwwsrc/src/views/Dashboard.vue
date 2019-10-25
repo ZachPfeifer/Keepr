@@ -13,12 +13,14 @@
       <!--All Keeps -->
       <!-- <ViewKeepModal /> -->
       <Keep class="col" v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+      <KeepPrivate class="col" v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
     </div>
   </div>
 </template>
 
 <script>
 import Keep from "../components/Keep.vue";
+import KeepPrivate from "../components/KeepPrivate";
 import AddKeepModal from "../components/AddKeepModal.vue";
 // import ViewKeepModal from "../components/KeepModal.vue";
 
@@ -30,7 +32,7 @@ export default {
   mounted() {
     this.$store.dispatch("getKeeps");
     this.$store.state.keeps;
-    this.$store.dispatch("getVaults");
+    this.$store.dispatch("getKeepById");
     this.$store.state.vaults;
   },
   computed: {
@@ -50,6 +52,6 @@ export default {
       this.$store.dispatch("addKeep");
     }
   },
-  components: { Keep, AddKeepModal } //, ViewKeepModal }
+  components: { Keep, AddKeepModal, KeepPrivate } //, ViewKeepModal }
 };
 </script>

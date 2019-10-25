@@ -28,7 +28,7 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.dispatch("getVaults");
+    this.$store.dispatch("getUserVaults");
     this.$store.state.vaults;
   },
   computed: {

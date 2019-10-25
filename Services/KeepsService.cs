@@ -41,13 +41,14 @@ namespace Keepr.Services
     {
       Keep keep = _repo.Get(newData.Id);
       if (keep == null) { throw new Exception("Invalid Id Homie"); }
-      keep.Name = newData.Name;
-      keep.Description = newData.Description;
-      keep.Img = newData.Img;
+      // keep.Name = newData.Name;
+      // keep.Description = newData.Description;
+      // keep.Img = newData.Img;
       keep.isPrivate = newData.isPrivate;
       keep.Views = newData.Views;
       keep.Shares = newData.Shares;
-
+      keep.Keeps = newData.Keeps;
+      // keep.Id = newData.Id;
       // keep.UserId = newData.UserId;
 
       _repo.Edit(keep);
@@ -62,13 +63,13 @@ namespace Keepr.Services
       return "Successfully Deleted";
     }
 
-    public Keep ViewCount(Keep count) //FIXME 
-    {
-      Keep keep = _repo.Get(count.Id);
-      keep.Views = count.Views + 1;
+    // public Keep Counts(Keep count) //FIXME 
+    // {
+    //   Keep keep = _repo.Get(count.Id);
+    //   keep.Views = count.Views + 1;
 
-      _repo.ViewCount(keep);
-      return keep;
-    }
+    //   _repo.Counts(keep);
+    //   return keep;
+    // }
   }
 }

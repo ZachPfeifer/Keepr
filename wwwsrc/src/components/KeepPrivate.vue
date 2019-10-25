@@ -1,5 +1,9 @@
 <template>
-  <div class="keep col-3 border rounded" v-if="keepProp.isPrivate == false">
+  <div
+    class="keepPrivate col-3 border rounded"
+    v-if="keepProp.isPrivate == true && !user.id == false && user.Id == keepProp.userId == true"
+  >
+    <!-- //FIXME -->
     <div class="card" style="width: 18rem;">
       <img :src="keepProp.img" class="card-img-top" alt="Post" />
 
@@ -15,6 +19,7 @@
           Views: {{keepProp.views}}
           Shares: {{keepProp.shares}}
           Keeps: {{keepProp.keeps}}
+          UserId: {{keepProp.userId}}
         </div>
         <div class="card-footer">
           <span>
@@ -42,20 +47,6 @@
                 >{{vault.name}}</a>
               </div>
             </div>
-
-            <!--FIXME Take 2 -->
-            <!-- <div v-if="user.id">
-          <select>
-            <option disabled selected>Select Vault</option>
-            <option
-              v-for="vault in vaults"
-              :key="vault.id"
-              :value="vault.id"
-              @click="addKeeptoVault()"
-            >{{vault.name}}</option>
-          </select>
-            </div>-->
-            <!-- end -->
           </span>
         </div>
       </div>
@@ -66,7 +57,7 @@
 
 <script>
 export default {
-  name: "keep",
+  name: "keepPrivate",
   props: ["keepProp"],
   data() {
     return {};

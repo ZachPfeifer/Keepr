@@ -97,13 +97,12 @@ namespace Keepr.Controllers
       }
     }
 
-    [Authorize]
-    [HttpPut("{id}")]
-    public ActionResult<Keep> Edit([FromBody] Keep newData, int id)
+    [HttpPut]
+    public ActionResult<Keep> Edit([FromBody] Keep newData)
     {
       try
       {
-        newData.Id = id;
+        // newData.Id = id;
         return Ok(_ks.Edit(newData));
       }
       catch (Exception e)
@@ -111,20 +110,20 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-
-    [HttpPut("{id}")]//FIXME
-    public ActionResult<Keep> UpdateView([FromBody] Keep viewCount, int id)
-    {
-      try
-      {
-        viewCount.Id = id;
-        return Ok(_ks.ViewCount(viewCount));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+    // [Authorize]
+    // [HttpPut("{id}")]//FIXME
+    // public ActionResult<Keep> UpdateView([FromBody] Keep Counts, int id)
+    // {
+    //   try
+    //   {
+    //     Counts.Id = id;
+    //     return Ok(_ks.Counts(Counts));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
     // public Order Edit(Order newData)
     // {

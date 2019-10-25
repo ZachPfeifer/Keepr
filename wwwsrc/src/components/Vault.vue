@@ -23,13 +23,17 @@ export default {
   methods: {
     viewVault() {
       this.$store.dispatch("getVaultById", this.vaultProp.id);
-      // //NOTE better way to navigate programatically
       this.$router.push({
         name: "vault",
         params: { vaultId: this.vaultProp.id }
       });
-      // //NOTE The OTHER way...
-      // this.$router.push("/vaults/" + this.vaultProp.id);
+      this.$store.dispatch("ViewCount", {
+        Views: (this.keepProp.views += 1),
+        Shares: this.keepProp.shares,
+        Keeps: this.keepProp.keeps,
+        // isPrivate: this.keepProp.isPrivate,
+        Id: this.keepProp.id
+      });
     }
   },
   components: {}

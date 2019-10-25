@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Keepr.Models;
 using Keepr.Repositories;
 using Dapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Keepr.Services
 {
@@ -17,9 +18,9 @@ namespace Keepr.Services
       _repo = repo;
     }
 
-    public IEnumerable<Vault> Get()
+    public IEnumerable<Vault> Get(string userId)
     {
-      return _repo.Get();
+      return _repo.GetUsersVaults(userId);
     }
 
     public Vault Get(int id)
@@ -51,13 +52,14 @@ namespace Keepr.Services
       _repo.Edit(vault);
       return vault;
     }
-
-    public string Delete(int id)
+    [Authorize]
+    public string Delete(int id, string userId)
     {
       Vault vault = _repo.Get(id);
-      if (vault == null) { throw new Exception("Invalid Id Homie"); }
+      if (vault == null || vault.UserId != userId) { throw new Exception("Invalid Id Homie"); }
       _repo.Delete(id);
       return "Successfully Deleted";
     }
+
   }
 }
