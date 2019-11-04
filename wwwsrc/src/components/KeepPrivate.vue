@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="keepPrivate col-3 border rounded"
-    v-if="keepProp.isPrivate == true && !user.id == false && user.Id == keepProp.userId == true"
-  >
+  <div class="keepPrivate col-3 border rounded">
     <!-- //FIXME -->
     <div class="card" style="width: 18rem;">
       <img :src="keepProp.img" class="card-img-top" alt="Post" />
@@ -19,6 +16,7 @@
           Views: {{keepProp.views}}
           Shares: {{keepProp.shares}}
           Keeps: {{keepProp.keeps}}
+          TESTING USERID:
           UserId: {{keepProp.userId}}
         </div>
         <div class="card-footer">
@@ -63,6 +61,7 @@ export default {
     return {};
   },
   mounted() {
+    this.$store.dispatch("GetUsersKeeps"); //FIXME
     this.$store.state.vaults;
     this.$store.dispatch("getVaults");
   },

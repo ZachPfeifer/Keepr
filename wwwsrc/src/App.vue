@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <div class="BG container-fluid">
       <span>
         <h1>Welcome Home {{user.username}}</h1>
         <!-- HOME/Keeps -->
@@ -68,7 +68,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #305880;
 }
 
 #nav {
@@ -82,5 +82,21 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.BG {
+  background-color: white;
+  background-image: url(https://cdn2.vectorstock.com/i/1000x1000/51/66/metal-background-polished-chrome-surface-vector-7815166.jpg);
+  box-shadow: 10px 10px;
+  border-radius: 0px 0px 25px 25px;
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+}
+/* TITLE */
+h1 {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 }
 </style>

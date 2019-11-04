@@ -55,8 +55,8 @@ namespace Keepr.Controllers
     //     return BadRequest(e.Message);
     //   }
     // }
-    [HttpGet("user")]
-    public ActionResult<IEnumerable<Keep>> GetUserKeeps()
+    [HttpGet]
+    public ActionResult<IEnumerable<Keep>> GetUserKeeps()// FIXME
     {
       try
       {

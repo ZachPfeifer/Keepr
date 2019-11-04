@@ -8,7 +8,7 @@
           Description: {{keepProp.description}}
           Views: {{keepProp.views}}
           <!-- Shares: {{keepProp.shares}} -->
-          VaultKeeps: {{keepProp.vaultKeeps}}
+          Keeps: {{keepProp.keeps}}
         </p>
         <div class="card-footer">
           <span>
@@ -70,13 +70,17 @@ export default {
   methods: {
     viewKeep() {
       this.$store.dispatch("getKeepById", this.keepProp.id);
-      // //NOTE better way to navigate programatically
+      this.$store.dispatch("ViewCount", {
+        Views: (this.keepProp.views += 1),
+        Shares: this.keepProp.shares,
+        Keeps: this.keepProp.keeps,
+        // isPrivate: this.keepProp.isPrivate,
+        Id: this.keepProp.id
+      });
       this.$router.push({
         name: "keep",
         params: { keepId: this.keepProp.id }
       });
-      // //NOTE The OTHER way...
-      // this.$router.push("/keeps/" + this.keepProp.id);
     },
     DeleteFromVault() {
       this.$store.dispatch("deleteKeepFromVault", {

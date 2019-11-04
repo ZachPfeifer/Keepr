@@ -24,7 +24,7 @@ namespace Keepr.Controllers
       try
       {
         string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vs.Get());
+        return Ok(_vs.Get(userId));
       }
       catch (Exception e)
       {

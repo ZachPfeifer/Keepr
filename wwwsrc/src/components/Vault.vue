@@ -19,6 +19,9 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    this.$store.state.activeVault;
+  },
   computed: {},
   methods: {
     viewVault() {

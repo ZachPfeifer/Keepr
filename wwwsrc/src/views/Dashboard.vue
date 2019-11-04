@@ -9,11 +9,15 @@
       data-target="#create-keep-modal"
     >Create Keep</button>
 
-    <div class="row">
+    <div>
       <!--All Keeps -->
       <!-- <ViewKeepModal /> -->
-      <Keep class="col" v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
-      <KeepPrivate class="col" v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+      <div class="row" v-if="!user.id">
+        <Keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+      </div>
+      <div v-else>
+        <KeepPrivate class="col" v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+      </div>
     </div>
   </div>
 </template>

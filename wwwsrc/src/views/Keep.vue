@@ -51,6 +51,7 @@ export default {
     return {};
   },
   mounted() {
+    this.$store.dispatch("GetUsersKeeps"); //FIXME
     this.$store.dispatch("getKeepById", this.$route.params.keepId);
     this.$store.state.activeKeep;
     this.$store.dispatch("getVaults");

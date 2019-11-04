@@ -1,5 +1,5 @@
 <template>
-  <div class="keep col-3 border rounded" v-if="keepProp.isPrivate == false">
+  <div class="keep col-3 border rounded">
     <div class="card" style="width: 18rem;">
       <img :src="keepProp.img" class="card-img-top" alt="Post" />
 
