@@ -120,7 +120,7 @@ export default new Vuex.Store({
     },
     async GetUsersKeeps({ commit, dispatch }) { //FIXME
       try {
-        let res = await api.get('keeps')
+        let res = await api.get(`keeps/user`)
         commit('setUsersKeeps', res.data)
       } catch (error) {
         console.error(error)

@@ -74,3 +74,8 @@ USE keeprcreeper;
 -- DROP TABLE IF EXISTS vaults;
 -- DROP TABLE IF EXISTS keeps;
 -- DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS bankitems;
+-- DROP TABLE IF EXISTS banks;
+-- DROP TABLE IF EXISTS items;
+
+
